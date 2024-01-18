@@ -1,28 +1,30 @@
 /* Structure */
 .mat-mdc-form-field {
-    font-size: 14px;
-  }
-  
-  .main-container {
-    margin: 10px 10px;
-  }
-  .row {
-    display: flex;
-  }
-  
-  .column {
-    flex: 50%;
-  }
-  
-  .full-width {
-    width: 100%;
-  }
-  
-  .button {
-    cursor: pointer;
-  }
-  
-  .actions-column {
-    margin: 0px 5px;
-  }
-  
+  font-size: 14px;
+}
+.mat-sort-header-arrow {
+  color: white;
+}
+
+.main-container {
+  margin: 10px 10px;
+}
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.actions-column {
+  margin: 0px 5px;
+}

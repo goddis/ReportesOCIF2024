@@ -9,6 +9,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 
 import { UsuariosService } from '../services/usuarios-service.service';
 import { Usuario } from '../interfaces/Usuario';
+import { colors } from '../../styles';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
@@ -37,6 +38,8 @@ export class UsuariosComponent implements AfterViewInit {
     'tipo_grupo_seguridad_id'
   ];
   dataSource = new MatTableDataSource<Usuario>();
+  black = colors.black;
+  white = colors.white;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
