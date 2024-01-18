@@ -8,35 +8,48 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 
 import { UsuariosService } from '../services/usuarios-service.service';
-
+import { Usuario } from '../interfaces/Usuario';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [ MatFormFieldModule,
+  imports: [
+    MatFormFieldModule,
     MatInputModule,
     MatTableModule,
     MatGridListModule,
     MatIconModule,
     MatPaginatorModule,
-    MatSortModule],
+    MatSortModule,
+    HttpClientModule
+  ],
   templateUrl: './usuarios.component.html',
-  styleUrl: './usuarios.component.css'
+  styleUrl: './usuarios.component.css',
 })
 export class UsuariosComponent implements AfterViewInit {
   displayedColumns: string[] = [
-    'position',
+    'username',
+    'number_id',
     'name',
-    'weight',
-    'symbol',
-    'acciones',
+    'lastname',
+    'area_id',
+    'tipo_grupo_seguridad_id'
   ];
-  dataSource = new MatTableDataSource(this.datos);
+  dataSource = new MatTableDataSource<Usuario>();
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
+
+  constructor(private usuariosService: UsuariosService) {
+    this.dataSource = new MatTableDataSource();
+  }
+
+  ngOnInit(): void {
+    this.obtenerUsuarios();
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -58,11 +71,14 @@ export class UsuariosComponent implements AfterViewInit {
   // }
 
   // recuperamos los datos desde el servicio
-  get datos(){
-    return this.usuariosService.datos;
+  obtenerUsuarios() {
+    return this.usuariosService.getUsuarios().subscribe((data) => {
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
-  constructor(private usuariosService: UsuariosService) {}
   // openDialog() {
   //   const dialogRef = this.dialog.open(DialogAnimationsDialog);
 
