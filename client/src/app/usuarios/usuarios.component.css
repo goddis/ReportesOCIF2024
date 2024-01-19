@@ -1,6 +1,7 @@
 /* Structure */
 .mat-mdc-form-field {
   font-size: 14px;
+  margin: 1px 5px
 }
 .mat-sort-header-arrow {
   color: white;
@@ -23,6 +24,12 @@
 
 .button {
   cursor: pointer;
+}
+.mat-button {
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 3px 2px;
 }
 
 .actions-column {

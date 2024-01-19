@@ -17,10 +17,30 @@
       />
     </mat-form-field>
   </div>
+  <div class="row">
+    <button
+      class="mat-button"
+      mat-flat-button
+      [style.background-color]="blue"
+      [style.border-color]="blue"
+      (click)="exportarExcel()"
+    >
+      EXPORTAR A EXCEL
+    </button>
+    <button
+      class="mat-button"
+      mat-flat-button
+      [style.background-color]="blue"
+      [style.border-color]="blue"
+      (click)="exportarPDF()"
+    >
+      EXPORTAR A PDF
+    </button>
+  </div>
 
   <div class="row">
     <table mat-table [dataSource]="dataSource" matSort>
-      <!-- Position Column -->
+      <!-- Usuario -->
       <ng-container matColumnDef="username">
         <th
           mat-header-cell
@@ -34,7 +54,7 @@
         <td mat-cell *matCellDef="let element">{{ element.username }}</td>
       </ng-container>
 
-      <!-- Name Column -->
+      <!-- cédula -->
       <ng-container matColumnDef="number_id">
         <th
           mat-header-cell
@@ -48,7 +68,7 @@
         <td mat-cell *matCellDef="let element">{{ element.number_id }}</td>
       </ng-container>
 
-      <!-- Weight Column -->
+      <!-- nombre  -->
       <ng-container matColumnDef="name">
         <th
           mat-header-cell
@@ -62,7 +82,7 @@
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
       </ng-container>
 
-      <!-- Symbol Column -->
+      <!-- apellido -->
       <ng-container matColumnDef="lastname">
         <th
           mat-header-cell
@@ -76,8 +96,8 @@
         <td mat-cell *matCellDef="let element">{{ element.lastname }}</td>
       </ng-container>
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="area_id">
+      <!-- nombre del area -->
+      <ng-container matColumnDef="area_name">
         <th
           mat-header-cell
           *matHeaderCellDef
@@ -87,11 +107,11 @@
         >
           Área
         </th>
-        <td mat-cell *matCellDef="let element">{{ element.area_id }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.area_name }}</td>
       </ng-container>
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="tipo_grupo_seguridad_id">
+      <!-- grupo de seguridad -->
+      <ng-container matColumnDef="grupo_seguridad">
         <th
           mat-header-cell
           *matHeaderCellDef
@@ -102,10 +122,11 @@
           Grupo de seguridad
         </th>
         <td mat-cell *matCellDef="let element">
-          {{ element.tipo_grupo_seguridad_id }}
+          {{ element.grupo_seguridad }}
         </td>
       </ng-container>
 
+      <!-- columna de acciones -->
       <ng-container matColumnDef="acciones">
         <th
           mat-header-cell
@@ -138,7 +159,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
-      <!-- Row shown when there is no matching data. -->
+      <!-- cuando no hay coincidencias de búsqueda en la tabla -->
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">
           No hay datos que coincidan con la búsqueda "{{ input.value }}"
@@ -146,6 +167,8 @@
       </tr>
     </table>
   </div>
+
+  <!-- paginador -->
   <mat-paginator
     [pageSizeOptions]="[5, 10, 25, 100]"
     aria-label="Select page of users"
