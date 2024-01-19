@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import {
   MatPaginator,
@@ -13,6 +13,7 @@ import {
   MatPaginatorIntl,
 } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog } from '@angular/material/dialog';
 
 import { UsuariosService } from '../../services/usuarios-service.service';
@@ -29,11 +30,11 @@ import { FormDialogComponent } from '../form-dialog/form-dialog.component';
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
-    MatGridListModule,
+    MatCardModule,
     MatIconModule,
     MatPaginatorModule,
     MatSortModule,
-    MatGridListModule,
+    MatTooltipModule,
     HttpClientModule,
     FormDialogComponent,
   ],
@@ -55,6 +56,8 @@ export class UsuariosComponent implements AfterViewInit {
   black = colors.black;
   white = colors.white;
   blue = colors.blue;
+  green = colors.green;
+  gray = colors.gray;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
