@@ -19,8 +19,12 @@
     "@angular/platform-browser": "^17.0.0",
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
+    "@types/jspdf": "^2.0.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.6.2",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
