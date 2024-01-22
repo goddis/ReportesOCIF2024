@@ -3,7 +3,7 @@ export interface Usuario {
     number_id: number;
     name: string;
     lastname: string;
-    area: number,
-    tipo_grupo_seguridad_id: number,
+    area_name: number,
+    grupo_seguridad: number,
     active: string
   }

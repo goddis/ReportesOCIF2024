@@ -1,0 +1,63 @@
+<h1 mat-dialog-title>Hi</h1>
+<mat-dialog-content>
+  <div class="row">
+    <div class="column">
+      <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          placeholder="pat@example.com"
+          [formControl]="email"
+          required
+          autocomplete="off"
+        />
+        <mat-error *ngIf="email.hasError('email')">El email no es válido</mat-error>
+        <mat-error *ngIf="email.invalid">{{ getErrorRequiredMessage(email) }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <mat-form-field>
+        <mat-label>Select me</mat-label>
+        <mat-select (selectionChange)="onSelectionChange($event)">
+          <ng-container *ngFor="let option of options; let i = index">
+            <mat-option value={{option}}>{{option}}</mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Input</mat-label>
+      <input matInput
+      placeholder="Un texto aquí"
+      [formControl]="nombre"
+      required
+      autocomplete="off">
+      <mat-error *ngIf="nombre.invalid">{{ getErrorRequiredMessage(nombre) }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <div class="column">
+      <mat-form-field>
+        <mat-label>Numerico</mat-label>
+        <input
+          matInput
+          placeholder="Campo numérico"
+          [formControl]="numero"
+          required
+          autocomplete="off"
+        />
+        <mat-error *ngIf="numero.hasError('pattern')">El valor debe ser un número</mat-error>
+        <mat-error *ngIf="numero.invalid">{{ getErrorRequiredMessage(numero) }}</mat-error>
+      </mat-form-field>
+    </div>
+    </div>
+</mat-dialog-content>
+
+<div mat-dialog-actions style="justify-content: flex-end">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onNoClick()">OK</button>
+</div>
+

@@ -1,14 +1,12 @@
 /* Structure */
 .mat-mdc-form-field {
   font-size: 14px;
+  margin: 1px 5px
 }
 .mat-sort-header-arrow {
   color: white;
 }
 
-.main-container {
-  margin: 10px 10px;
-}
 .row {
   display: flex;
 }
@@ -23,6 +21,12 @@
 
 .button {
   cursor: pointer;
+}
+.mat-button {
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 3px 2px;
 }
 
 .actions-column {
