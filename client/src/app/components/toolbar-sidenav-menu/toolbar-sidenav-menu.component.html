@@ -1,0 +1,33 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="opened=!opened">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>Reportes OCIF</span>
+        <span class="spacer"></span>
+        <button mat-icon-button class="favorite-icon" aria-label="icon-button with heart icon">
+            <mat-icon>home</mat-icon>
+        </button>
+        <button mat-icon-button class="" aria-label="icon-button with share icon">
+            <mat-icon>home</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav [(opened)]="opened" mode="side">
+        <mat-list>
+            <mat-list-item>
+                <a routerLink="" class="items-menu">Inicio</a>
+            </mat-list-item>
+            <mat-list-item>
+                <a routerLink="/usuarios" class="items-menu">Usuarios</a>
+            </mat-list-item>
+            <mat-list-item>
+                <a routerLink="/areas" class="items-menu">Áreas</a>
+            </mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
