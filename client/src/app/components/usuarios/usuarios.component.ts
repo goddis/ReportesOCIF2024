@@ -20,7 +20,7 @@ import { UsuariosService } from '../../services/usuarios-service.service';
 import { Usuario } from '../../interfaces/Usuario';
 import { colors } from '../../../styles';
 
-import { FormDialogComponent } from '../form-dialog/form-dialog.component';
+import { FormUsuarioComponent } from '../form-usuario/form-usuario.component';
 import { exportarExcel, exportarPDF } from '../../utils/funciones/utilsTablas';
 
 @Component({
@@ -36,7 +36,7 @@ import { exportarExcel, exportarPDF } from '../../utils/funciones/utilsTablas';
     MatSortModule,
     MatTooltipModule,
     HttpClientModule,
-    FormDialogComponent,
+    FormUsuarioComponent,
   ],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css',
@@ -149,7 +149,7 @@ export class UsuariosComponent implements AfterViewInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(FormDialogComponent, {
+    const dialogRef = this.dialog.open(FormUsuarioComponent, {
       disableClose: true,
     });
     // en el dialog.open se pueden agregar caracteristicas al dialog

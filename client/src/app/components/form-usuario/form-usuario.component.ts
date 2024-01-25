@@ -42,16 +42,16 @@ import { GruposSeguridadService } from '../../services/grupos-seguridad-service.
     MatDialogActions,
     MatDialogClose,
   ],
-  templateUrl: './form-dialog.component.html',
-  styleUrl: './form-dialog.component.css',
+  templateUrl: './form-usuario.component.html',
+  styleUrl: './form-usuario.component.css',
 })
-export class FormDialogComponent {
+export class FormUsuarioComponent {
   form: FormGroup;
 
   areas: Area[] = [];
   gruposSeg: GrupoSeguridad[] = [];
   constructor(
-    public dialogRef: MatDialogRef<FormDialogComponent>,
+    public dialogRef: MatDialogRef<FormUsuarioComponent>,
     private fb: FormBuilder,
     private usuariosService: UsuariosService,
     private areasService: AreasService,
