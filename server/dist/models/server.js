@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const database_1 = __importDefault(require("../database/database"));
 const usuario_routes_1 = __importDefault(require("../routes/usuario.routes"));
+const area_routes_1 = __importDefault(require("../routes/area.routes"));
+const grupoSeguridad_1 = __importDefault(require("../routes/grupoSeguridad"));
 const cors_1 = __importDefault(require("cors"));
 class Server {
     constructor() {
@@ -23,7 +25,7 @@ class Server {
     middlewares() {
         this.app.use((0, cors_1.default)());
         this.app.use((req, res, next) => {
-            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Origin", "http://localhost:4200");
             next();
         });
         // parse del body
@@ -38,6 +40,8 @@ class Server {
     }
     routes() {
         this.app.use("/api/usuarios", usuario_routes_1.default);
+        this.app.use("/api/areas", area_routes_1.default);
+        this.app.use("/api/grupoSeguridad", grupoSeguridad_1.default);
     }
 }
 exports.default = Server;
