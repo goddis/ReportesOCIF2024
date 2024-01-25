@@ -9,15 +9,14 @@ const getUsuarios = (req, res) => {
     const consulta = `
             SELECT 
             u.id, 
-            u.number_id, 
-            u.name, 
-            u.lastname, 
-            u.active, 
-            u.username, 
-            gs.name AS grupo_seguridad,
+            u.numero_id, 
+            u.nombre, 
+            u.apellido, 
+            u.usuario, 
+            gs.nombre AS grupo_seguridad,
             u.tipo_grupo_seguridad_id, 
             u.area_id, 
-            a.name AS area_name 
+            a.nombre AS area_nombre 
             FROM users AS u 
             LEFT JOIN grupos_seguridad AS gs ON gs.id = u.tipo_grupo_seguridad_id 
             LEFT JOIN area AS a ON a.id = u.area_id`;
