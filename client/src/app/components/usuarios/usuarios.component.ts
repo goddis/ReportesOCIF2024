@@ -19,9 +19,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { UsuariosService } from '../../services/usuarios-service.service';
 import { Usuario } from '../../interfaces/Usuario';
 import { colors } from '../../../styles';
-import { exportarExcel, exportarPDF } from '../../funciones/utilsTablas';
 
-import { FormDialogComponent } from '../form-dialog/form-dialog.component';
+import { FormUsuarioComponent } from '../form-usuario/form-usuario.component';
+import { exportarExcel, exportarPDF } from '../../utils/funciones/utilsTablas';
 
 @Component({
   selector: 'app-usuarios',
@@ -36,25 +36,23 @@ import { FormDialogComponent } from '../form-dialog/form-dialog.component';
     MatSortModule,
     MatTooltipModule,
     HttpClientModule,
-    FormDialogComponent,
+    FormUsuarioComponent,
   ],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css',
 })
 export class UsuariosComponent implements AfterViewInit {
-  displayedColumns: string[] = [
-    'username',
-    'number_id',
-    'name',
-    'lastname',
-    'area_name',
+  displayedColumns: (string | number)[] = [
+    'usuario',
+    'numero_id',
+    'nombre',
+    'apellido',
+    'area_nombre',
     'grupo_seguridad',
     'acciones',
   ];
   dataSource = new MatTableDataSource<Usuario>();
   columnasExp: string[] = [];
-  black = colors.black;
-  white = colors.white;
   blue = colors.blue;
   green = colors.green;
   gray = colors.gray;
@@ -110,12 +108,12 @@ export class UsuariosComponent implements AfterViewInit {
   // se recupera la tabla en excel
   onExportarExcel() {
     const datosTabla = this.dataSource.data.map((row) => [
-      row.username,
-      row.number_id,
-      row.name,
-      row.lastname,
-      row.area_name,
-      row.grupo_seguridad,
+      row.usuario,
+      row.numero_id,
+      row.nombre,
+      row.apellido,
+      row.area_nombre ?? '',
+      row.grupo_seguridad ?? '',
     ]);
     const nombreExcel = 'Usuarios.xlsx';
     exportarExcel(nombreExcel, this.columnasExp, datosTabla);
@@ -124,32 +122,39 @@ export class UsuariosComponent implements AfterViewInit {
   // se recupera la tabla en pdf
   onExportarPDF() {
     const datosTabla = this.dataSource.data.map((row) => [
-      row.username,
-      row.number_id,
-      row.name,
-      row.lastname,
-      row.area_name,
-      row.grupo_seguridad,
+      row.usuario,
+      row.numero_id,
+      row.nombre,
+      row.apellido,
+      row.area_nombre ?? '',
+      row.grupo_seguridad ?? '',
     ]);
     const nombrePdf = 'Usuarios.pdf';
     exportarPDF(nombrePdf, this.columnasExp, datosTabla);
   }
 
-  onEdit() {
+  onAbrirForm() {
     this.openDialog();
     console.log('click en editar');
   }
 
-  onDelete() {
+  onDelete(idUsuario: number) {
     // this.openDialog();
-    console.log('click en eliminar');
+    //TODO abrir dialog de confirmacion
+    console.log('click en eliminar', idUsuario);
+    return this.usuariosService.deleteUsuario(idUsuario).subscribe(() => {
+      this.obtenerUsuarios();
+    });
+    //TODO abrir dialog de accion exitosa
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(FormDialogComponent);
-
-    dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
+    const dialogRef = this.dialog.open(FormUsuarioComponent, {
+      disableClose: true,
+    });
+    // en el dialog.open se pueden agregar caracteristicas al dialog
+    dialogRef.afterClosed().subscribe(()=> {
+      this.obtenerUsuarios();
     });
   }
 }

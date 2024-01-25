@@ -1,6 +1,8 @@
 import express, { Application } from "express";
 import connection from "../database/database";
 import routesUsuarios from "../routes/usuario.routes";
+import routesAreas from "../routes/area.routes";
+import routesGruposSeguridad from "../routes/grupoSeguridad";
 import cors from "cors";
 
 class Server {
@@ -41,6 +43,8 @@ class Server {
 
   routes() {
     this.app.use("/api/usuarios", routesUsuarios);
+    this.app.use("/api/areas", routesAreas);
+    this.app.use("/api/grupoSeguridad", routesGruposSeguridad);
   }
 }
 

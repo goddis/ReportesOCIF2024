@@ -1,9 +1,11 @@
 export interface Usuario {
-    username: string;
-    number_id: number;
-    name: string;
-    lastname: string;
-    area_name: number,
-    grupo_seguridad: number,
-    active: string
+    usuario: string;
+    numero_id: number;
+    nombre: string;
+    apellido: string;
+    area_nombre?: string,
+    area_id: number,
+    grupo_seguridad?: string,
+    tipo_grupo_seguridad_id: number,
+    password?: string
   }

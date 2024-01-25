@@ -1,0 +1,29 @@
+mat-form-field {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  margin: 0px 5px;
+}
+
+.boton-aceptar {
+  background-color: #00c389;
+  border-color: #00c389;
+  color: #2c2a29 !important;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.boton-regresar {
+  background-color: #2c2a29;
+  border-color: #2c2a29;
+  color: #fff !important;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
