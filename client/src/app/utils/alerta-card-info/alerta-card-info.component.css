@@ -1,0 +1,23 @@
+.example-card {
+  max-width: 300px;
+}
+
+.mensaje-alerta {
+  color: #2c2a29;
+  font-weight: 500;
+  font-size: 12px;
+  text-align: center;
+}
+.boton-ok-alerta {
+  background-color: #9063cd;
+  border-color: #9063cd;
+  color: #fff !important;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
