@@ -98,7 +98,7 @@ export class UsuariosComponent implements AfterViewInit {
 
   // se recuperan los datos desde el servicio
   obtenerUsuarios() {
-    return this.usuariosService.getUsuarios().subscribe((data) => {
+    return this.usuariosService.s_obtenerUsuarios().subscribe((data) => {
       this.dataSource.data = data;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -133,27 +133,28 @@ export class UsuariosComponent implements AfterViewInit {
     exportarPDF(nombrePdf, this.columnasExp, datosTabla);
   }
 
-  onAbrirForm() {
-    this.openDialog();
-    console.log('click en editar');
+  onOpenForm(id?: number) {
+    this.openDialog(id);
   }
 
   onDelete(idUsuario: number) {
     // this.openDialog();
     //TODO abrir dialog de confirmacion
     console.log('click en eliminar', idUsuario);
-    return this.usuariosService.deleteUsuario(idUsuario).subscribe(() => {
+    return this.usuariosService.s_eliminarUsuario(idUsuario).subscribe(() => {
       this.obtenerUsuarios();
     });
     //TODO abrir dialog de accion exitosa
   }
 
-  openDialog() {
+  openDialog(id?: number) {
     const dialogRef = this.dialog.open(FormUsuarioComponent, {
       disableClose: true,
+      data: { id: id }
+
     });
     // en el dialog.open se pueden agregar caracteristicas al dialog
-    dialogRef.afterClosed().subscribe(()=> {
+    dialogRef.afterClosed().subscribe(() => {
       this.obtenerUsuarios();
     });
   }

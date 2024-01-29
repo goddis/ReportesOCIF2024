@@ -9,7 +9,7 @@ import { GrupoSeguridad } from '../interfaces/GrupoSeguridad';
   providedIn: 'root'
 })
 export class GruposSeguridadService {
-  getGruposSeguridad(): Observable<GrupoSeguridad[]> {
+  s_obtenerGruposSeguridad(): Observable<GrupoSeguridad[]> {
     return this.http.get<GrupoSeguridad[]>(`${environment.endpointAPI}/grupoSeguridad`);
   }
   constructor(private http: HttpClient) { }

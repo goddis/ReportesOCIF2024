@@ -8,7 +8,7 @@ import { environment } from '../../environments/environments';
   providedIn: 'root'
 })
 export class AreasService {
-  getAreas(): Observable<Area[]> {
+  s_obtenerAreas(): Observable<Area[]> {
     return this.http.get<Area[]>(`${environment.endpointAPI}/areas`);
   }
 

@@ -1,7 +1,7 @@
 <mat-card style="margin: 15px 15px; border: 0.5px solid lightgrey">
   <mat-card-content>
     <div>
-      <h2 style="margin: 1px 10px 1px"><b> Usuarios </b></h2>
+      <h2 style="margin: 1px 10px 1px"><b>Usuarios </b></h2>
       <p style="margin: 1px 10px 10px; font-size: 16px">
         Esta opción permite la visualización y gestión de los usuarios.
       </p>
@@ -14,7 +14,7 @@
         mat-flat-button
         [style.background-color]="green"
         [style.border-color]="green"
-        (click)="onAbrirForm()"
+        (click)="onOpenForm()"
       >
         <mat-icon>note_add</mat-icon>
         Crear usuario
@@ -140,7 +140,7 @@
           <td mat-cell *matCellDef="let element" [width]="50">
             <div class="row">
               <div class="actions-column">
-                <mat-icon (click)="onAbrirForm()" class="button" matTooltip="Editar"
+                <mat-icon (click)="onOpenForm(element.id)" class="button" matTooltip="Editar"
                   >edit</mat-icon
                 >
               </div>
