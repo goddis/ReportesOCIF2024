@@ -15,23 +15,26 @@
 </mat-toolbar>
 <mat-sidenav-container>
     <mat-sidenav [(opened)]="opened" mode="side">
-        <mat-list>
-            <mat-list-item>
-                <mat-icon class="icons-color">home</mat-icon>
-                <a routerLink="" class="items-menu">Inicio</a>
-            </mat-list-item>
-            <mat-list-item>
-                <mat-icon class="icons-color">home</mat-icon>
-                <a routerLink="/usuarios" class="items-menu">Usuarios</a>
-            </mat-list-item>
-            <mat-list-item>
-                <mat-icon class="icons-color">home</mat-icon>
-                <a routerLink="/areas" class="items-menu">Áreas</a>
-            </mat-list-item>
-        </mat-list>
+        <hr class="hr-sidenav">
+        <ul class="mat-list-sidenav">
+            <li *ngFor="let info_opciones of navInfoOpcionesMenu" (click)="toggleSubMenu(info_opciones)"
+                class="mat-list-item-sidenav">
+                <a [routerLink]="[info_opciones.routeLink]" class="nav-link">
+                    <mat-icon class="icon-link">{{info_opciones.icon}}</mat-icon>
+                    <span class="nav-link-label">{{info_opciones.label}}</span>
+                </a>
+                <ul *ngIf="info_opciones.submenuVisible" class="mat-list-sidenav-submenu">
+                    <li *ngFor="let subitem of info_opciones.submenu" class="mat-list-item-sidenav-submenu">
+                        <a [routerLink]="[subitem.routeLink]" class="nav-link-submenu">
+                            <mat-icon class="icon-link-submenu">{{subitem.icon}}</mat-icon>
+                            <span class="nav-link-label-submenu">{{subitem.label}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
-
