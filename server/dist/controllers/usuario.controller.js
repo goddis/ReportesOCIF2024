@@ -52,36 +52,45 @@ const putUser = (req, res) => {
     const { body } = req;
     const consulta = "UPDATE users SET ? WHERE id = ? ";
     database_1.default.query(consulta, [body, id], (err, data) => {
-        if (err)
-            throw err;
-        res.json({
-            msg: "Usuario actualizado con éxito",
-        });
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Se produjo un error al actualizar el usuario.' });
+        }
+        else {
+            res.json({
+                msg: "Usuario actualizado con éxito",
+            });
+        }
     });
 };
 exports.putUser = putUser;
 const deleteUser = (req, res) => {
     const { id } = req.params;
-    console.log("ID:", id);
     const consulta = "DELETE FROM users WHERE id = ? ";
     database_1.default.query(consulta, id, (err, data) => {
-        if (err)
-            throw err;
-        res.json({
-            msg: "Usuario eliminado",
-        });
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Se produjo un error al eliminar el usuario' });
+        }
+        else {
+            res.json({
+                msg: "Usuario eliminado",
+            });
+        }
     });
 };
 exports.deleteUser = deleteUser;
 const getUser = (req, res) => {
     const { id } = req.params;
-    console.log("ID:", id);
     const consulta = "SELECT * FROM users WHERE id = ? ";
     database_1.default.query(consulta, id, (err, data) => {
-        if (err)
-            throw err;
-        console.log("data:", data);
-        res.json(data[0]);
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Se produjo un error al recuperar el usuario.' });
+        }
+        else {
+            res.json(data[0]);
+        }
     });
 };
 exports.getUser = getUser;

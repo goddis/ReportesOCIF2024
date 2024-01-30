@@ -17,13 +17,19 @@
     <mat-sidenav [(opened)]="opened" mode="side">
         <hr class="hr-sidenav">
         <ul class="mat-list-sidenav">
-            <li *ngFor="let info_opciones of navInfoOpcionesMenu" (click)="toggleSubMenu(info_opciones)"
-                class="mat-list-item-sidenav">
-                <a [routerLink]="[info_opciones.routeLink]" class="nav-link">
+            <li *ngFor="let info_opciones of navInfoOpcionesMenu" class="mat-list-item-sidenav">
+                <a [routerLink]="[info_opciones.routeLink]" class="nav-link" (click)="toggleSubMenu(info_opciones)">
                     <mat-icon class="icon-link">{{info_opciones.icon}}</mat-icon>
                     <span class="nav-link-label">{{info_opciones.label}}</span>
-                </a>
-                <ul *ngIf="info_opciones.submenuVisible" class="mat-list-sidenav-submenu">
+                    <!-- <mat-icon *ngIf="!info_opciones.submenu || info_opciones.submenu.length === 0"></mat-icon> -->
+                    <mat-icon class="icon-flecha-submenu"
+                        *ngIf="info_opciones.openSubMenu && info_opciones.submenu && info_opciones.submenu.length > 0"
+                        fontIcon="keyboard_arrow_down"></mat-icon>
+                    <mat-icon class="icon-flecha-submenu"
+                        *ngIf="!info_opciones.openSubMenu && info_opciones.submenu && info_opciones.submenu.length > 0"
+                        fontIcon="keyboard_arrow_right"></mat-icon> </a>
+                <ul *ngIf="info_opciones.openSubMenu" class="mat-list-sidenav-submenu" [@openClose]="info_opciones.openSubMenu ? 'open' : 'closed'" id={{info_opciones.id}}>
+                    <!-- <ul [@openClose]="info_opciones.openSubMenu ? 'open' : 'closed'" class="mat-list-sidenav-submenu" id={{info_opciones.id}}> -->
                     <li *ngFor="let subitem of info_opciones.submenu" class="mat-list-item-sidenav-submenu">
                         <a [routerLink]="[subitem.routeLink]" class="nav-link-submenu">
                             <mat-icon class="icon-link-submenu">{{subitem.icon}}</mat-icon>

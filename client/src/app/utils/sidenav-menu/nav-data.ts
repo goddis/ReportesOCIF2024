@@ -5,20 +5,23 @@ export const navbarData = [
         label: 'Inicio'
     },
     {
-        routeLink: 'administracion',
+        routeLink: '#submenu_admin',
+        id: "submenu_admin",
         icon: 'settings',
         label: 'Administración',
+        openSubMenu: false,
         submenu: [{
             routeLink: 'administracion/areas',
             icon: 'assignment',
             label: 'Áreas',
         }],
-        submenuVisible: false
     },
     {
-        routeLink: 'seguridad',
+        routeLink: '#submenu_seguridad',
+        id: "submenu_seguridad",
         icon: 'security',
         label: 'Seguridad',
+        openSubMenu: false,
         submenu: [
             {
                 routeLink: 'seguridad/usuarios',
@@ -36,12 +39,13 @@ export const navbarData = [
                 label: 'Permisos',
             },
         ],
-        submenuVisible: false
     },
     {
-        routeLink: 'parametrizacion',
+        routeLink: '#submenu_parametrizacion',
+        id: "submenu_parametrizacion",
         icon: 'view_quilt',
         label: 'Parametrización',
+        openSubMenu: false,
         submenu: [
             {
                 routeLink: 'parametrizacion/formatos',
@@ -54,7 +58,23 @@ export const navbarData = [
                 label: 'Nodos',
             },
         ],
-        submenuVisible: false
+    },
+    {
+        routeLink: 'carga',
+        icon: 'cloud_upload',
+        label: 'Carga',
+        submenu: [
+            {
+                routeLink: 'carga/cargarFormatos',
+                icon: 'create_new_folder',
+                label: 'Cargar formatos',
+            },
+        ],
+    },
+    {
+        routeLink: 'informes',
+        icon: 'assessment',
+        label: 'Informes'
     },
 ]
 

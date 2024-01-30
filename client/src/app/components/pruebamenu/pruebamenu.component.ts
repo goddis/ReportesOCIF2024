@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SubmenuComponent } from '../submenu/submenu.component';
 import { navbarData } from '../../utils/sidenav-menu/nav-data';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -9,18 +8,10 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-pruebamenu',
   standalone: true,
-  imports: [CommonModule, SubmenuComponent, MatIconModule, MatListModule, RouterModule],
+  imports: [],
   template: `
-  <div>
-    <ul>
-      <li *ngFor="let item of navInfoOpcionesMenu" (click)="toggleSubMenu(item)">
-        {{ item.label }}
-        <app-submenu *ngIf="item.submenuVisible" [subMenuItems]="item.submenu"></app-submenu>
-      </li>
-    </ul>
-  </div>
-
-  <div>
+  
+  <!-- <div>
   <ul>
     <li *ngFor="let item of navInfoOpcionesMenu" (click)="toggleSubMenu(item)">
       {{ item.label }}
@@ -31,9 +22,9 @@ import { RouterModule } from '@angular/router';
       </ul>
     </li>
   </ul>
-</div>
+</div> -->
 
-<mat-list class="mat-list-sidenav">
+<!-- <mat-list class="mat-list-sidenav">
             <mat-list-item *ngFor="let item of navInfoOpcionesMenu" (click)="toggleSubMenu(item)" class="mat-list-item-sidenav">
                 <a [routerLink]="[item.routeLink]" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}" class="nav-link">
@@ -45,7 +36,7 @@ import { RouterModule } from '@angular/router';
           {{ subitem.label }}
         </mat-list-item>
       </mat-list>
-     
+      -->
         
   `,
   styleUrl: './pruebamenu.component.css'

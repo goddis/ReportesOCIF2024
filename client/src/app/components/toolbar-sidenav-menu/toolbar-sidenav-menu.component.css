@@ -12,7 +12,7 @@ mat-sidenav-container {
 }
 
 mat-sidenav {
-    width: 240px;
+    width: 250px;
     background-color: #2c2a29;
 }
 
@@ -92,7 +92,7 @@ mat-sidenav {
     .mat-list-item-sidenav-submenu {
         width: 100%;
         margin-bottom: 0rem;
-        padding: 0.5rem 2.0rem 0rem 0rem;
+        padding: 0.2rem 0.5rem 0rem 0rem;
 
         .nav-link-submenu {
             display: flex;
@@ -104,7 +104,7 @@ mat-sidenav {
             transition: all .3s ease;
 
             .icon-link-submenu {
-                font-size: 20px;
+                font-size: 18px;
                 width: 1rem;
                 min-width: 2rem;
                 margin: 0;
@@ -141,7 +141,11 @@ mat-sidenav {
 
 .hr-sidenav{
     color: #c6c6c6 !important;
-    width: 12rem;
+    width: 13.5rem;
     margin-left: 1rem;
     margin-top: 20px;
+}
+
+.icon-flecha-submenu{
+    margin-left: 10px;
 }
