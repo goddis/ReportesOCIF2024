@@ -23,7 +23,7 @@ const getUsers = (req, res) => {
     database_1.default.query(consulta, (err, data) => {
         if (err) {
             console.error(err);
-            res.status(500).json({ error: 'Se produjo un error al obtener datos' });
+            res.status(500).json({ error: "Se produjo un error al obtener datos" });
         }
         else {
             res.json(data);
@@ -37,11 +37,11 @@ const postUser = (req, res) => {
     database_1.default.query(consulta, [body], (err, data) => {
         if (err) {
             console.error(err);
-            res.status(500).json({ error: 'Se produjo un error al obtener datos' });
+            res.status(500).json({ error: "Se produjo un error al agregar el usuario" });
         }
         else {
             res.json({
-                msg: "Usuario guardado con éxito",
+                respuesta: "success",
             });
         }
     });

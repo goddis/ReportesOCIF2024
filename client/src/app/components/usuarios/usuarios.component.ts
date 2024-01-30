@@ -134,7 +134,7 @@ export class UsuariosComponent implements AfterViewInit {
   }
 
   onOpenForm(id?: number) {
-    this.openDialog(id);
+    this.openFormDialog(id);
   }
 
   onDelete(idUsuario: number) {
@@ -147,17 +147,17 @@ export class UsuariosComponent implements AfterViewInit {
     //TODO abrir dialog de accion exitosa
   }
 
-  openDialog(id?: number) {
+  openFormDialog(id?: number) {
     const dialogRef = this.dialog.open(FormUsuarioComponent, {
       disableClose: true,
-      data: { id: id }
-
+      data: { id: id },
     });
     // en el dialog.open se pueden agregar caracteristicas al dialog
     dialogRef.afterClosed().subscribe(() => {
       this.obtenerUsuarios();
     });
   }
+
 }
 
 @Injectable()

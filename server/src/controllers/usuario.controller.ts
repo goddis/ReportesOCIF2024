@@ -20,7 +20,7 @@ export const getUsers = (req: Request, res: Response) => {
   connection.query(consulta, (err, data) => {
     if (err) {
       console.error(err);
-      res.status(500).json({ error: 'Se produjo un error al obtener datos' });
+      res.status(500).json({ error: "Se produjo un error al obtener datos" });
     } else {
       res.json(data);
     }
@@ -33,10 +33,10 @@ export const postUser = (req: Request, res: Response) => {
   connection.query(consulta, [body], (err, data) => {
     if (err) {
       console.error(err);
-      res.status(500).json({ error: 'Se produjo un error al obtener datos' });
+      res.status(500).json({ error: "Se produjo un error al agregar el usuario" });
     } else {
       res.json({
-        msg: "Usuario guardado con éxito",
+        respuesta: "success",
       });
     }
   });
@@ -50,10 +50,12 @@ export const putUser = (req: Request, res: Response) => {
   connection.query(consulta, [body, id], (err, data) => {
     if (err) {
       console.error(err);
-      res.status(500).json({ error: 'Se produjo un error al actualizar el usuario.' });
+      res.status(500).json({
+        error: "Se produjo un error al actualizar el usuario",
+      });
     } else {
       res.json({
-        msg: "Usuario actualizado con éxito",
+        respuesta: "success",
       });
     }
   });
@@ -66,7 +68,9 @@ export const deleteUser = (req: Request, res: Response) => {
   connection.query(consulta, id, (err, data) => {
     if (err) {
       console.error(err);
-      res.status(500).json({ error: 'Se produjo un error al eliminar el usuario' });
+      res
+        .status(500)
+        .json({ error: "Se produjo un error al eliminar el usuario" });
     } else {
       res.json({
         msg: "Usuario eliminado",
@@ -82,7 +86,9 @@ export const getUser = (req: Request, res: Response) => {
   connection.query(consulta, id, (err, data) => {
     if (err) {
       console.error(err);
-      res.status(500).json({ error: 'Se produjo un error al recuperar el usuario.' });
+      res
+        .status(500)
+        .json({ error: "Se produjo un error al recuperar el usuario." });
     } else {
       res.json(data[0]);
     }
