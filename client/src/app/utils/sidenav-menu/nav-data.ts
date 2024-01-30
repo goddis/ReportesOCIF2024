@@ -34,7 +34,7 @@ export const navbarData = [
                 label: 'Grupo de seguridad',
             },
             {
-                routeLink: 'permisos',
+                routeLink: 'seguridad/permisos',
                 icon: 'lock_open',
                 label: 'Permisos',
             },
@@ -60,9 +60,11 @@ export const navbarData = [
         ],
     },
     {
-        routeLink: 'carga',
+        routeLink: '#submenu_carga',
+        id: "submenu_carga",
         icon: 'cloud_upload',
         label: 'Carga',
+        openSubMenu: false,
         submenu: [
             {
                 routeLink: 'carga/cargarFormatos',
