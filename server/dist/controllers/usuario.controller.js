@@ -76,13 +76,11 @@ const putUser = (req, res) => {
     database_1.default.query(consulta, [body, id], (err, data) => {
         if (err) {
             console.error(err);
-            res.status(500).json({
-                error: "Se produjo un error al actualizar el usuario",
-            });
+            res.status(500).json({ error: 'Se produjo un error al actualizar el usuario.' });
         }
         else {
             res.json({
-                respuesta: "success",
+                msg: "Usuario actualizado con éxito",
             });
         }
     });
@@ -94,9 +92,7 @@ const deleteUser = (req, res) => {
     database_1.default.query(consulta, id, (err, data) => {
         if (err) {
             console.error(err);
-            res
-                .status(500)
-                .json({ error: "Se produjo un error al eliminar el usuario" });
+            res.status(500).json({ error: 'Se produjo un error al eliminar el usuario' });
         }
         else {
             res.json({
@@ -112,9 +108,7 @@ const getUser = (req, res) => {
     database_1.default.query(consulta, id, (err, data) => {
         if (err) {
             console.error(err);
-            res
-                .status(500)
-                .json({ error: "Se produjo un error al recuperar el usuario." });
+            res.status(500).json({ error: 'Se produjo un error al recuperar el usuario.' });
         }
         else {
             res.json(data[0]);
