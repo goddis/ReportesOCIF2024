@@ -1,0 +1,36 @@
+.card-alerta {
+  max-width: 300px;
+}
+
+.titulo-card {
+  color: #9063cd;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+}
+
+.cuerpo-card {
+  color: #2c2a29;
+  font-size: 14px;
+  text-align: center;
+}
+
+.boton-si {
+  background-color: #9063cd;
+  border-color: #9063cd;
+  color: #fff !important;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px 5px
+}
+
+.boton-cancelar {
+  background-color: #2c2a29;
+  border-color: #2c2a29;
+  color: #fff !important;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px 5px
+}

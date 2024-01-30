@@ -110,7 +110,7 @@ export class FormUsuarioComponent {
     }
   }
 
-  regresar(): void {
+  regresar() {
     this.dialogRef.close();
   }
 
@@ -127,6 +127,7 @@ export class FormUsuarioComponent {
         tipoForm: this.id === undefined ? 'creación' : 'actualización',
       },
     });
+
   }
 
   // funciones para obtener datos
@@ -166,14 +167,16 @@ export class FormUsuarioComponent {
       (data) => {
         respuestaForm = data.respuesta;
         this.openAlertaCardInfo(respuestaForm);
+        this.regresar();
       },
       (error) => {
         respuestaForm = 'error';
         this.openAlertaCardInfo(respuestaForm);
         console.error(error);
+        this.regresar();
       }
     );
-    this.regresar();
+   
   }
 
   actualizarUsuario(id: number, usuario: Usuario) {
@@ -182,14 +185,16 @@ export class FormUsuarioComponent {
       (data) => {
         respuestaForm = data.respuesta;
         this.openAlertaCardInfo(respuestaForm);
+        this.regresar();
       },
       (error) => {
         respuestaForm = 'error';
         this.openAlertaCardInfo(respuestaForm);
         console.error(error);
+        this.regresar();
       }
     );
-    this.regresar();
+    
   }
 
   agregarEditarUsuario(): void {

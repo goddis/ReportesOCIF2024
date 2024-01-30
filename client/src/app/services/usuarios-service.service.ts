@@ -13,8 +13,8 @@ export class UsuariosService {
     return this.http.get<Usuario[]>(`${environment.endpointAPI}/usuarios`);
   }
 
-  s_eliminarUsuario(id: number): Observable<void> {
-    return this.http.delete<void>(`${environment.endpointAPI}/usuarios/${id}`);
+  s_eliminarUsuario(id: number): Observable<any> {
+    return this.http.delete<any>(`${environment.endpointAPI}/usuarios/${id}`);
   }
 
   s_agregarsuario(usuario: Usuario): Observable<any> {
