@@ -4,7 +4,7 @@
 
 mat-toolbar {
     background-color: #2c2a29;
-    color: #fff
+    color: #fff;
 }
 
 mat-sidenav-container {
@@ -148,4 +148,9 @@ mat-sidenav {
 
 .icon-flecha-submenu{
     margin-left: 10px;
+}
+
+.logo{
+    width: 14rem;
+    padding-top: 20px;
 }

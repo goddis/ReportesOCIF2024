@@ -1,9 +1,11 @@
 <mat-toolbar>
     <mat-toolbar-row>
-        <button mat-icon-button (click)="opened=!opened">
+        <!-- <button mat-icon-button (click)="opened=!opened">
             <mat-icon>menu</mat-icon>
-        </button>
-        <span>Reportes OCIF</span>
+        </button> -->
+        <a (click)="opened=!opened" >
+            <img src="../../../assets/images/logoBancolombia.png" alt="logo" class="logo" />
+        </a>
         <span class="spacer"></span>
         <button mat-icon-button class="favorite-icon" aria-label="icon-button with heart icon">
             <mat-icon>home</mat-icon>
