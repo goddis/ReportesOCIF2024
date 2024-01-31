@@ -33,16 +33,38 @@ const getUsers = (req, res) => {
 exports.getUsers = getUsers;
 const postUser = (req, res) => {
     const { body } = req;
-    const consulta = "INSERT INTO users SET ? ";
-    database_1.default.query(consulta, [body], (err, data) => {
+    // se valida si el usuario ya existe en la tabla
+    database_1.default.query("SELECT numero_id FROM users WHERE numero_id = ?", body.numero_id, (err, rows) => {
         if (err) {
             console.error(err);
-            res.status(500).json({ error: "Se produjo un error al agregar el usuario" });
+            res
+                .status(500)
+                .json({ error: "Se produjo un error al buscar el usuario" });
         }
         else {
-            res.json({
-                respuesta: "success",
-            });
+            // si el usuario ya existe
+            if (rows.length > 0) {
+                res.json({
+                    respuesta: "existe",
+                });
+            }
+            else {
+                // si el usuario es nuevo, se inserta en la tabla
+                const consultaInsert = "INSERT INTO users SET ? ";
+                database_1.default.query(consultaInsert, [body], (err, data) => {
+                    if (err) {
+                        console.error(err);
+                        res
+                            .status(500)
+                            .json({ error: "Se produjo un error al agregar el usuario" });
+                    }
+                    else {
+                        res.json({
+                            respuesta: "success",
+                        });
+                    }
+                });
+            }
         }
     });
 };
@@ -74,7 +96,7 @@ const deleteUser = (req, res) => {
         }
         else {
             res.json({
-                msg: "Usuario eliminado",
+                respuesta: "success",
             });
         }
     });

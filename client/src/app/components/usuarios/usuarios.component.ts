@@ -22,10 +22,14 @@ import { colors } from '../../../styles';
 
 import { FormUsuarioComponent } from '../form-usuario/form-usuario.component';
 import { exportarExcel, exportarPDF } from '../../utils/funciones/utilsTablas';
+import { AlertaCardConfirmacionComponent } from '../../utils/alerta-card-confirmacion/alerta-card-confirmacion.component';
+
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
+  templateUrl: './usuarios.component.html',
+  styleUrl: './usuarios.component.css',
   imports: [
     MatFormFieldModule,
     MatInputModule,
@@ -37,9 +41,8 @@ import { exportarExcel, exportarPDF } from '../../utils/funciones/utilsTablas';
     MatTooltipModule,
     HttpClientModule,
     FormUsuarioComponent,
+    AlertaCardConfirmacionComponent,
   ],
-  templateUrl: './usuarios.component.html',
-  styleUrl: './usuarios.component.css',
 })
 export class UsuariosComponent implements AfterViewInit {
   displayedColumns: (string | number)[] = [
@@ -133,31 +136,27 @@ export class UsuariosComponent implements AfterViewInit {
     exportarPDF(nombrePdf, this.columnasExp, datosTabla);
   }
 
-  onOpenForm(id?: number) {
-    this.openFormDialog(id);
-  }
-
-  onDelete(idUsuario: number) {
-    // this.openDialog();
-    //TODO abrir dialog de confirmacion
-    console.log('click en eliminar', idUsuario);
-    return this.usuariosService.s_eliminarUsuario(idUsuario).subscribe(() => {
-      this.obtenerUsuarios();
-    });
-    //TODO abrir dialog de accion exitosa
-  }
-
   openFormDialog(id?: number) {
     const dialogRef = this.dialog.open(FormUsuarioComponent, {
       disableClose: true,
       data: { id: id },
     });
-    // en el dialog.open se pueden agregar caracteristicas al dialog
+    // cuando cierra refresca pantalla
     dialogRef.afterClosed().subscribe(() => {
       this.obtenerUsuarios();
     });
   }
 
+  openCardEliminar(idUsuario: number) {
+    const dialogRef = this.dialog.open(AlertaCardConfirmacionComponent, {
+      disableClose: true,
+      data: { id: idUsuario },
+    });
+    // cuando cierra refresca pantalla
+    dialogRef.afterClosed().subscribe(() => {
+      this.obtenerUsuarios();
+    });
+  }
 }
 
 @Injectable()

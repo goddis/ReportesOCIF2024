@@ -27,11 +27,14 @@ export class AlertaCardInfoComponent {
   obtenerInfoCard() {
     const respuestaForm = this.data.respuestaForm;
     const tipoForm = this.data.tipoForm;
-    this.mensaje = this.utilsService.s_obtenerMensajeAlerta(respuestaForm, tipoForm);
+    this.mensaje = this.utilsService.s_obtenerMensajeAlerta(
+      respuestaForm,
+      tipoForm
+    );
     this.imagen = this.utilsService.s_obtenerImagenAlerta(respuestaForm);
   }
 
-  cerrarCardAlerta(): void {
+  cerrarCardAlerta() {
     this.dialogRef.close();
   }
 }

@@ -29,5 +29,15 @@ export class UtilsService {
     }
     return rutaImagen;
   }
+
+  s_obtenerMensajeConfirmacion(tipoAccion: string) {
+    const card = {
+      titulo: `¿Está seguro de ${tipoAccion} el registro?`,
+      cuerpo: 'Recuerde que se eliminará permanentemente.',
+      imagen: '../../../assets/images/EstaSeguro.png',
+    };
+    return card;
+  }
+
   constructor() {}
 }

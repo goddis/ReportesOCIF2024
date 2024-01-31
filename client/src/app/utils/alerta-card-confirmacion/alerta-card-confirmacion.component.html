@@ -1,0 +1,17 @@
+<mat-card class="card-alerta">
+  <img mat-card-image src="{{ card.imagen }}" alt="ícono de alerta" />
+  <mat-card-content class="card-alerta">
+    <p class="titulo-card">
+      {{ card.titulo }}
+    </p>
+    <p class="cuerpo-card">
+        {{card.cuerpo}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions style="justify-content: flex-end">
+    <button mat-button class="boton-si" (click)="onYesClick()">¡Sí, estoy seguro!</button>
+    <button mat-button class="boton-cancelar" (click)="cerrarCard()">
+      Cancelar
+    </button>
+  </mat-card-actions>
+</mat-card>
