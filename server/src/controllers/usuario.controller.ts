@@ -1,7 +1,7 @@
 import { Request, Response, query } from "express";
 import connection from "../database/database";
 
-export const getUsuarios = (req: Request, res: Response) => {
+export const getUsers = (req: Request, res: Response) => {
   const consulta = `
             SELECT 
             u.id, 
@@ -18,47 +18,103 @@ export const getUsuarios = (req: Request, res: Response) => {
             LEFT JOIN area AS a ON a.id = u.area_id`;
 
   connection.query(consulta, (err, data) => {
-    if (err) throw err;
-    res.json(data);
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: "Se produjo un error al obtener datos" });
+    } else {
+      res.json(data);
+    }
   });
 };
 
-export const postUsuario = (req: Request, res: Response) => {
+export const postUser = (req: Request, res: Response) => {
   const { body } = req;
-  console.log("body:", body);
-
-  const consulta = "INSERT INTO users SET ? ";
-  connection.query(consulta, [body], (err, data) => {
-    if (err) throw err;
-    res.json({
-      msg: "Usuario guardado con éxito",
-    });
-  });
+  // se valida si el usuario ya existe en la tabla
+  connection.query(
+    "SELECT numero_id FROM users WHERE numero_id = ?",
+    body.numero_id,
+    (err, rows) => {
+      if (err) {
+        console.error(err);
+        res
+          .status(500)
+          .json({ error: "Se produjo un error al buscar el usuario" });
+      } else {
+        // si el usuario ya existe
+        if (rows.length > 0) {
+          res.json({
+            respuesta: "existe",
+          });
+        } else {
+          // si el usuario es nuevo, se inserta en la tabla
+          const consultaInsert = "INSERT INTO users SET ? ";
+          connection.query(consultaInsert, [body], (err, data) => {
+            if (err) {
+              console.error(err);
+              res
+                .status(500)
+                .json({ error: "Se produjo un error al agregar el usuario" });
+            } else {
+              res.json({
+                respuesta: "success",
+              });
+            }
+          });
+        }
+      }
+    }
+  );
 };
 
-export const putUsuario = (req: Request, res: Response) => {
+export const putUser = (req: Request, res: Response) => {
   const { id } = req.params;
   const { body } = req;
-  console.log("body:", body);
 
   const consulta = "UPDATE users SET ? WHERE id = ? ";
   connection.query(consulta, [body, id], (err, data) => {
-    if (err) throw err;
-    res.json({
-      msg: "Usuario actualizado con éxito",
-    });
+    if (err) {
+      console.error(err);
+      res.status(500).json({
+        error: "Se produjo un error al actualizar el usuario",
+      });
+    } else {
+      res.json({
+        respuesta: "success",
+      });
+    }
   });
 };
 
-export const deleteUsuario = (req: Request, res: Response) => {
+export const deleteUser = (req: Request, res: Response) => {
   const { id } = req.params;
-  console.log("ID:", id);
 
   const consulta = "DELETE FROM users WHERE id = ? ";
   connection.query(consulta, id, (err, data) => {
-    if (err) throw err;
-    res.json({
-      msg: "Usuario eliminado",
-    });
+    if (err) {
+      console.error(err);
+      res
+        .status(500)
+        .json({ error: "Se produjo un error al eliminar el usuario" });
+    } else {
+      res.json({
+       respuesta: "success",
+      });
+    }
+  });
+};
+
+export const getUser = (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const consulta = "SELECT * FROM users WHERE id = ? ";
+  connection.query(consulta, id, (err, data) => {
+    if (err) {
+      console.error(err);
+      res
+        .status(500)
+        .json({ error: "Se produjo un error al recuperar el usuario." });
+    } else {
+      res.json(data[0]);
+    }
   });
 };

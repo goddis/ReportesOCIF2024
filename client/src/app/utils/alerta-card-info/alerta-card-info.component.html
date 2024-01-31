@@ -1,0 +1,13 @@
+<mat-card class="card-alerta">
+  <img mat-card-image src="{{ imagen }}" alt="ícono de alerta" />
+  <mat-card-content class="card-alerta">
+    <p class="mensaje-alerta">
+      {{ mensaje }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button class="boton-ok-alerta" (click)="cerrarCardAlerta()">
+      OK
+    </button>
+  </mat-card-actions>
+</mat-card>

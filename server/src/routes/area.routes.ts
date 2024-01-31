@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { obtenerAreas } from "../controllers/areas.controller";
+import { getAreas } from "../controllers/areas.controller";
 
 const router = Router();
 
-router.get("/", obtenerAreas);
+router.get("/", getAreas);
 export default router;

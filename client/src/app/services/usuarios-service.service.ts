@@ -9,19 +9,32 @@ import { Observable } from 'rxjs';
 })
 export class UsuariosService {
   // para obtener los datos en cualquier componente que use el servicio
-  getUsuarios(): Observable<Usuario[]> {
+  s_obtenerUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${environment.endpointAPI}/usuarios`);
   }
 
-  deleteUsuario(id: number): Observable<void> {
-    return this.http.delete<void>(`${environment.endpointAPI}/usuarios/${id}`);
+  s_eliminarUsuario(id: number): Observable<any> {
+    return this.http.delete<any>(`${environment.endpointAPI}/usuarios/${id}`);
   }
 
-  addUsuario(usuario: Usuario): Observable<void> {
+  s_agregarsuario(usuario: Usuario): Observable<any> {
     return this.http.post<void>(
       `${environment.endpointAPI}/usuarios/`,
       usuario
     );
   }
+
+  s_obtenerUsuario(id: number): Observable<Usuario> {
+    console.log('ID s_obtener', id);
+    return this.http.get<Usuario>(`${environment.endpointAPI}/usuarios/${id}`);
+  }
+
+  s_actualizarUsuario(id: number, usuario: Usuario): Observable<any> {
+    return this.http.put<any>(
+      `${environment.endpointAPI}/usuarios/${id}`,
+      usuario
+    );
+  }
+
   constructor(private http: HttpClient) {}
 }

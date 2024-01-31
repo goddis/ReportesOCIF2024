@@ -22,10 +22,14 @@ import { colors } from '../../../styles';
 
 import { FormUsuarioComponent } from '../form-usuario/form-usuario.component';
 import { exportarExcel, exportarPDF } from '../../utils/funciones/utilsTablas';
+import { AlertaCardConfirmacionComponent } from '../../utils/alerta-card-confirmacion/alerta-card-confirmacion.component';
+
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
+  templateUrl: './usuarios.component.html',
+  styleUrl: './usuarios.component.css',
   imports: [
     MatFormFieldModule,
     MatInputModule,
@@ -37,9 +41,8 @@ import { exportarExcel, exportarPDF } from '../../utils/funciones/utilsTablas';
     MatTooltipModule,
     HttpClientModule,
     FormUsuarioComponent,
+    AlertaCardConfirmacionComponent,
   ],
-  templateUrl: './usuarios.component.html',
-  styleUrl: './usuarios.component.css',
 })
 export class UsuariosComponent implements AfterViewInit {
   displayedColumns: (string | number)[] = [
@@ -98,7 +101,7 @@ export class UsuariosComponent implements AfterViewInit {
 
   // se recuperan los datos desde el servicio
   obtenerUsuarios() {
-    return this.usuariosService.getUsuarios().subscribe((data) => {
+    return this.usuariosService.s_obtenerUsuarios().subscribe((data) => {
       this.dataSource.data = data;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -133,27 +136,24 @@ export class UsuariosComponent implements AfterViewInit {
     exportarPDF(nombrePdf, this.columnasExp, datosTabla);
   }
 
-  onAbrirForm() {
-    this.openDialog();
-    console.log('click en editar');
-  }
-
-  onDelete(idUsuario: number) {
-    // this.openDialog();
-    //TODO abrir dialog de confirmacion
-    console.log('click en eliminar', idUsuario);
-    return this.usuariosService.deleteUsuario(idUsuario).subscribe(() => {
-      this.obtenerUsuarios();
-    });
-    //TODO abrir dialog de accion exitosa
-  }
-
-  openDialog() {
+  openFormDialog(id?: number) {
     const dialogRef = this.dialog.open(FormUsuarioComponent, {
       disableClose: true,
+      data: { id: id },
     });
-    // en el dialog.open se pueden agregar caracteristicas al dialog
-    dialogRef.afterClosed().subscribe(()=> {
+    // cuando cierra refresca pantalla
+    dialogRef.afterClosed().subscribe(() => {
+      this.obtenerUsuarios();
+    });
+  }
+
+  openCardEliminar(idUsuario: number) {
+    const dialogRef = this.dialog.open(AlertaCardConfirmacionComponent, {
+      disableClose: true,
+      data: { id: idUsuario },
+    });
+    // cuando cierra refresca pantalla
+    dialogRef.afterClosed().subscribe(() => {
       this.obtenerUsuarios();
     });
   }
